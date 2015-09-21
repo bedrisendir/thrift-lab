@@ -12,15 +12,15 @@ import org.apache.thrift.protocol.TProtocol;
 public class JavaClient {
   public static void main(String [] args) {
 
-    if (args.length != 1) {
-      System.out.println("Please enter 'simple' or 'secure'");
+    if (args.length != 3) {
+      System.out.println("Please enter simple/secure [ip] [port]");
       System.exit(0);
     }
 
     try {
       TTransport transport;
       if (args[0].contains("simple")) {
-        transport = new TSocket("localhost", 9090);
+        transport = new TSocket(args[1], Integer.valueOf(args[2]));
         transport.open();
       }
       else {
@@ -36,7 +36,7 @@ public class JavaClient {
          * Get a client transport instead of a server transport. The connection is opened on
          * invocation of the factory method, no need to specifically call open()
          */
-        transport = TSSLTransportFactory.getClientSocket("localhost", 9091, 0, params);
+        transport = TSSLTransportFactory.getClientSocket(args[1], Integer.valueOf(args[2]), 0, params);
       }
 
       TProtocol protocol = new  TBinaryProtocol(transport);

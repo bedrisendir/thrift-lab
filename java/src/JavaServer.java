@@ -19,32 +19,37 @@ public class JavaServer {
 
   public static Calculator.Processor processor;
 
+  public static int port;
+
   public static void main(String [] args) {
     try {
       handler = new CalculatorHandler();
       processor = new Calculator.Processor(handler);
-
+      port= Integer.valueOf(args[0]);
       Runnable simple = new Runnable() {
         public void run() {
           simple(processor);
         }
       };      
+    /*
       Runnable secure = new Runnable() {
         public void run() {
           secure(processor);
         }
       };
-
+    */
       new Thread(simple).start();
-      new Thread(secure).start();
+     // new Thread(secure).start();
+
     } catch (Exception x) {
       x.printStackTrace();
     }
+   
   }
 
   public static void simple(Calculator.Processor processor) {
     try {
-      TServerTransport serverTransport = new TServerSocket(9090);
+      TServerTransport serverTransport = new TServerSocket(port);
       TServer server = new TSimpleServer(new Args(serverTransport).processor(processor));
 
       // Use this for a multithreaded server
@@ -66,7 +71,7 @@ public class JavaServer {
        */
       TSSLTransportParameters params = new TSSLTransportParameters();
       // The Keystore contains the private key
-      params.setKeyStore("../../lib/java/test/.keystore", "thrift", null, null);
+      params.setKeyStore("/home/yaoliu/src_code/local/lib/java/test/.keystore", "thrift", null, null);
 
       /*
        * Use any of the TSSLTransportFactory to get a server transport with the appropriate
@@ -76,7 +81,7 @@ public class JavaServer {
        * Note: You need not explicitly call open(). The underlying server socket is bound on return
        * from the factory class. 
        */
-      TServerTransport serverTransport = TSSLTransportFactory.getServerSocket(9091, 0, null, params);
+      TServerTransport serverTransport = TSSLTransportFactory.getServerSocket(port, 0, null, params);
       TServer server = new TSimpleServer(new Args(serverTransport).processor(processor));
 
       // Use this for a multi threaded server
