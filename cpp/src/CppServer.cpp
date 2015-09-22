@@ -57,7 +57,7 @@ public:
   }
 
   int32_t calculate(const int32_t logid, const Work& work) {
-    cout << "calculate(" << logid << ", " << work << ")" << endl;
+    cout << "calculate(" << logid << ", " << work.op << ")" << endl;
     int32_t val;
 
     switch (work.op) {
@@ -130,7 +130,7 @@ class CalculatorCloneFactory : virtual public CalculatorIfFactory {
 };
 
 int main() {
-  TThreadedServer server(
+ TThreadedServer server(
     boost::make_shared<CalculatorProcessorFactory>(boost::make_shared<CalculatorCloneFactory>()),
     boost::make_shared<TServerSocket>(9090), //port
     boost::make_shared<TBufferedTransportFactory>(),
@@ -147,22 +147,18 @@ int main() {
 
   /**
    * Here are some alternate server types...
-
   // This server only allows one connection at a time, but spawns no threads
   TSimpleServer server(
     boost::make_shared<CalculatorProcessor>(boost::make_shared<CalculatorHandler>()),
     boost::make_shared<TServerSocket>(9090),
     boost::make_shared<TBufferedTransportFactory>(),
     boost::make_shared<TBinaryProtocolFactory>());
-
   const int workerCount = 4;
-
   boost::shared_ptr<ThreadManager> threadManager =
     ThreadManager::newSimpleThreadManager(workerCount);
   threadManager->threadFactory(
     boost::make_shared<PlatformThreadFactory>());
   threadManager->start();
-
   // This server allows "workerCount" connection at a time, and reuses threads
   TThreadPoolServer server(
     boost::make_shared<CalculatorProcessorFactory>(boost::make_shared<CalculatorCloneFactory>()),

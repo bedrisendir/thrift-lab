@@ -71,7 +71,7 @@ int main() {
     // costly copy construction
     SharedStruct ss;
     client.getStruct(ss, 1);
-    cout << "Received log: " << ss << endl;
+    cout << "Received log: " << ss.ascii_fingerprint << endl;
 
     transport->close();
   } catch (TException& tx) {
