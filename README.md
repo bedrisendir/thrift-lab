@@ -1,7 +1,7 @@
 # thrift-lab
 Before cloning the repo make sure that thrift path is added to your PATH environment variable.
 
-Setting up the Environment
+##Setting up the Environment
 ####For bash
 ````
 export PATH=$PATH:/home/yaoliu/src_code/local/bin
@@ -14,8 +14,8 @@ setenv PATH $PATH:/home/yaoliu/src_code/local/bin
 setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH:"/home/yaoliu/src_code/local/lib"
 ```
 
-If you want to persist the changes, append commands to your .bashrc or .tcshrc files or 
-simply run the command below and reload your bash/tcshrc session.
+**If you want to persist the changes, append commands to your .bashrc or .tcshrc files or 
+simply run the command below and reload your bash/tcshrc session.**
 
 (Do not replace your username.)
 ```
@@ -34,7 +34,9 @@ bsendir1@remote06:~$ thrift --version
 Thrift version 1.0.0-dev
 ```
 
-Running Examples
+___
+
+##Running Examples
 1-) Clone the repo
 git clone https://github.com/bedrisendir/thrift-lab.git
 
