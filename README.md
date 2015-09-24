@@ -39,7 +39,7 @@ ___
 ##Running Examples
 1-) Clone the repo
 
-'git clone https://github.com/bedrisendir/thrift-lab.git'
+`git clone https://github.com/bedrisendir/thrift-lab.git`
 
 2-) Go to thrift-lab directory
 
