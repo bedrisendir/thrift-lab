@@ -1,5 +1,6 @@
 # thrift-lab
 Before cloning the repo make sure that thrift path is added to your PATH environment variable.
+
 Setting up the Environment:
 For bash;
 export PATH=$PATH:/home/yaoliu/src_code/local/bin
