@@ -19,7 +19,7 @@ simply run the command below and reload your bash/tcshrc session.**
 
 (Do not replace your username.)
 ```
-bsendir1@remote06:~$ /home/bsendir1/thriftsetup
+bsendir1@remote06:~$ /home/bsendir1/thriftsetup.sh
 ```
 
 If you set the thrift path correctly you should be able to get following output.
